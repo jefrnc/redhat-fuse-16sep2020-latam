@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring          http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.redhat.gpte.training.camel.bean.MyBean" id="myBean"/>
+    <camelContext id="camelContext-d4c89e18-bcf2-44dd-835d-26b9f09a489d" xmlns="http://camel.apache.org/schema/spring">
+    
+        <route id="_route1">
+            <from id="_from1" uri="timer://exercise?delay=2s&amp;period=10s"/>
+            <setBody id="_setBody1">
+                <constant>Student</constant>
+            </setBody>
+            <bean id="_bean1" method="sayHello" ref="myBean"/>
+            <log id="_log1" message=">> a Camel exercise - ${body}"/>
+        </route>
+        
+    </camelContext>
+</beans>
